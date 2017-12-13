@@ -1,0 +1,22 @@
+{
+  "name": "auth_settings",
+  "version": "1.0",
+  "description": {
+    "en": "Auth Settings",
+    "ru": "Auth Settings",
+    "uk": "Auth Settings"
+  },
+  "url": "https://github.com/pytsite/plugin-auth_settings",
+  "author": {
+    "name": "Alexander Shepetko",
+    "email": "a@shepetko.com",
+    "url": "https://shepetko.com"
+  },
+  "requires": {
+    "packages": [],
+    "plugins": [
+      "font_awesome",
+      "settings"
+    ]
+  }
+}

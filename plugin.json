@@ -1,6 +1,6 @@
 {
   "name": "auth_settings",
-  "version": "1.0",
+  "version": "1.1",
   "description": {
     "en": "Auth Settings",
     "ru": "Auth Settings",
@@ -15,8 +15,10 @@
   "requires": {
     "packages": [],
     "plugins": [
+      "auth_ui",
       "font_awesome",
-      "settings"
+      "settings>=1.3",
+      "widget"
     ]
   }
 }

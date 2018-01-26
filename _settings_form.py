@@ -1,11 +1,11 @@
 """PytSite Authentication Settings Plugin Forms
 """
-from pytsite import lang as _lang
-from plugins import widget as _widget, auth_ui as _auth_ui, settings as _settings
-
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
+
+from pytsite import lang as _lang
+from plugins import widget as _widget, auth_ui as _auth_ui, settings as _settings
 
 
 class Form(_settings.Form):

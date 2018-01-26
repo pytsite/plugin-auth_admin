@@ -6,7 +6,7 @@ __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
 
-def plugin_load():
+def plugin_load_uwsgi():
     from pytsite import lang
     from plugins import settings
     from . import _settings_form
@@ -15,4 +15,4 @@ def plugin_load():
     lang.register_package(__name__)
 
     # Settings form
-    settings.define('auth', _settings_form.Form, 'auth_settings@security', 'fa fa-user')
+    settings.define('auth', _settings_form.Form, 'auth_settings@security', 'fa fa-user', 'dev')

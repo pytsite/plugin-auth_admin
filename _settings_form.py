@@ -17,19 +17,26 @@ class Form(_settings.Form):
             weight=10,
             uid='setting_signup_enabled',
             label=_lang.t('auth_settings@allow_sign_up'),
-            default=False,
+            default=_auth.is_sign_up_enabled(),
         ))
 
         self.add_widget(_widget.select.Checkbox(
             weight=20,
             uid='setting_signup_confirmation_required',
             label=_lang.t('auth_settings@signup_confirmation_required'),
-            default=True,
+            default=_auth.is_sign_up_confirmation_required(),
+        ))
+
+        self.add_widget(_widget.select.Checkbox(
+            weight=30,
+            uid='setting_signup_admins_notification_enabled',
+            label=_lang.t('auth_settings@signup_notify_admins'),
+            default=_auth.is_sign_up_admins_notification_enabled(),
         ))
 
         ui_driver_items = [(driver.name, driver.description) for driver in _auth_ui.get_drivers().values()]
         self.add_widget(_widget.select.Select(
-            weight=30,
+            weight=40,
             uid='setting_ui_driver',
             append_none_item=False,
             label=_lang.t('auth_settings@default_ui_driver'),
@@ -39,18 +46,17 @@ class Form(_settings.Form):
         ))
 
         self.add_widget(_widget.select.Select(
-            weight=40,
+            weight=50,
             uid='setting_new_user_status',
             append_none_item=False,
             label=_lang.t('auth_settings@new_user_status'),
             h_size='col-xs-12 col-sm-6 col-md-3',
             items=_auth.get_user_statuses(),
-            default='waiting',
+            default=_auth.get_new_user_status(),
         ))
 
-        user_role = _auth.get_role('user')
         self.add_widget(_widget.select.Checkboxes(
-            weight=50,
+            weight=60,
             uid='setting_new_user_roles',
             label=_lang.t('auth_settings@new_user_roles'),
             h_size='col-xs-12 col-sm-6 col-md-3',

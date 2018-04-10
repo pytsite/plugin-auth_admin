@@ -34,9 +34,16 @@ class Form(_settings.Form):
             default=_auth.is_sign_up_admins_notification_enabled(),
         ))
 
+        self.add_widget(_widget.select.Checkbox(
+            weight=40,
+            uid='setting_user_status_change_notification_enabled',
+            label=_lang.t('auth_settings@user_status_change_notify'),
+            default=_auth.is_user_status_change_notification_enabled(),
+        ))
+
         ui_driver_items = [(driver.name, driver.description) for driver in _auth_ui.get_drivers().values()]
         self.add_widget(_widget.select.Select(
-            weight=40,
+            weight=50,
             uid='setting_ui_driver',
             append_none_item=False,
             label=_lang.t('auth_settings@default_ui_driver'),
@@ -46,7 +53,7 @@ class Form(_settings.Form):
         ))
 
         self.add_widget(_widget.select.Select(
-            weight=50,
+            weight=60,
             uid='setting_new_user_status',
             append_none_item=False,
             label=_lang.t('auth_settings@new_user_status'),
@@ -56,7 +63,7 @@ class Form(_settings.Form):
         ))
 
         self.add_widget(_widget.select.Checkboxes(
-            weight=60,
+            weight=70,
             uid='setting_new_user_roles',
             label=_lang.t('auth_settings@new_user_roles'),
             h_size='col-xs-12 col-sm-6 col-md-3',

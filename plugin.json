@@ -1,6 +1,6 @@
 {
   "name": "auth_settings",
-  "version": "2.1",
+  "version": "2.2",
   "description": {
     "en": "Auth Settings",
     "ru": "Auth Settings",
@@ -13,9 +13,8 @@
     "url": "https://shepetko.com"
   },
   "requires": {
-    "packages": [],
     "plugins": [
-      "auth>=2.1",
+      "auth>=2.6",
       "auth_ui",
       "font_awesome",
       "settings>=1.3",

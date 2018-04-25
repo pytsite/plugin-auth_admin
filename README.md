@@ -1,7 +1,13 @@
-# PytSite Auth Settings Plugin
+# PytSite Auth Admin Plugin
 
 
 ## Changelog
+
+
+### 3.0 (2018-04-25)
+
+- Plugin renamed from `auth_settings` to `auth_admin`.
+- Roles and users admin browsers added.
 
 
 ### 2.2 (2018-04-10)

@@ -7,7 +7,7 @@ __license__ = 'MIT'
 
 def plugin_load_uwsgi():
     from pytsite import lang, router, tpl
-    from plugins import settings, admin, http_api
+    from plugins import auth_ui, settings, admin, http_api
     from . import _frm, _controllers, _http_api_controllers
 
     # Resources
@@ -24,10 +24,11 @@ def plugin_load_uwsgi():
     http_api.handle('GET', abp + '/browse/<e_type>', _http_api_controllers.GetBrowserRows, 'auth_admin@browser_rows')
 
     # Admin routes
-    router.handle(_controllers.AdminBrowse, abp + '/role', 'auth_admin@browse_roles', {'e_type': 'role'})
-    router.handle(_controllers.AdminBrowse, abp + '/user', 'auth_admin@browse_users', {'e_type': 'user'})
-    router.handle(_controllers.AdminForm, abp + '/role/<uid>', 'auth_admin@form_role', {'e_type': 'role'})
-    router.handle(_controllers.AdminForm, abp + '/user/<uid>', 'auth_admin@form_user', {'e_type': 'user'})
+    flt = auth_ui.AuthFilterController
+    router.handle(_controllers.AdminBrowse, abp + '/role', 'auth_admin@browse_roles', {'e_type': 'role'}, filters=flt)
+    router.handle(_controllers.AdminBrowse, abp + '/user', 'auth_admin@browse_users', {'e_type': 'user'}, filters=flt)
+    router.handle(_controllers.AdminForm, abp + '/role/<uid>', 'auth_admin@form_role', {'e_type': 'role'}, filters=flt)
+    router.handle(_controllers.AdminForm, abp + '/user/<uid>', 'auth_admin@form_user', {'e_type': 'user'}, filters=flt)
 
     # 'Security' admin sidebar section
     admin.sidebar.add_section('security', 'auth_admin@security', 1000)

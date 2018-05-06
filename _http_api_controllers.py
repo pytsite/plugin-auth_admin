@@ -60,9 +60,9 @@ class GetBrowserRows(_routing.Controller):
             roles += str(_html.Span(role_desc, css=css)) + ' '
 
         status = user.status
-        if status == 'active':
+        if status == _auth.USER_STATUS_ACTIVE:
             status_css = 'info'
-        elif status == 'waiting':
+        elif status == _auth.USER_STATUS_WAITING:
             status_css = 'warning'
         else:
             status_css = 'default'

@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.1 (2018-05-06)
+
+Support of `auth-3.1`, `form-4.0`.
+
+
 ### 3.0 (2018-04-25)
 
 - Plugin renamed from `auth_settings` to `auth_admin`.

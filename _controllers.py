@@ -20,10 +20,10 @@ class AdminBrowse(_routing.Controller):
         e_type = self.arg('e_type')
         if e_type == 'role':
             _metatag.t_set('title', _lang.t('auth_admin@roles'))
-            form = _frm.RolesBrowser()
+            form = _frm.RolesBrowser(self.request)
         elif e_type == 'user':
             _metatag.t_set('title', _lang.t('auth_admin@users'))
-            form = _frm.UsersBrowser()
+            form = _frm.UsersBrowser(self.request)
         else:
             raise self.server_error('Unknown entity type')
 
@@ -42,10 +42,10 @@ class AdminForm(_routing.Controller):
         uid = self.arg('uid')
         if e_type == 'role':
             _metatag.t_set('title', _lang.t('auth_admin@' + ('create_role' if uid == '0' else 'modify_role')))
-            form = _auth_ui.form.Role(role_uid=uid)
+            form = _auth_ui.form.Role(self.request, role_uid=uid)
         elif e_type == 'user':
             _metatag.t_set('title', _lang.t('auth_admin@' + ('create_user' if uid == '0' else 'modify_user')))
-            form = _auth_ui.form.User(user_uid=uid)
+            form = _auth_ui.form.User(self.request, user_uid=uid)
         else:
             raise self.server_error('Unknown entity type')
 

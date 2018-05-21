@@ -25,18 +25,26 @@ def plugin_load_uwsgi():
 
     # Admin routes
     flt = auth_ui.AuthFilterController
-    router.handle(_controllers.AdminBrowse, abp + '/role', 'auth_admin@browse_roles', {'e_type': 'role'}, filters=flt)
-    router.handle(_controllers.AdminBrowse, abp + '/user', 'auth_admin@browse_users', {'e_type': 'user'}, filters=flt)
-    router.handle(_controllers.AdminForm, abp + '/role/<uid>', 'auth_admin@form_role', {'e_type': 'role'}, filters=flt)
-    router.handle(_controllers.AdminForm, abp + '/user/<uid>', 'auth_admin@form_user', {'e_type': 'user'}, filters=flt)
+    router.handle(_controllers.Browser, abp + '/browse/role', 'auth_admin@browse_roles',
+                  {'e_type': 'role'}, filters=flt)
+    router.handle(_controllers.Browser, abp + '/browse/user', 'auth_admin@browse_users',
+                  {'e_type': 'user'}, filters=flt)
+    router.handle(_controllers.ModifyForm, abp + '/modify/role/<uid>', 'auth_admin@form_role_modify',
+                  {'e_type': 'role'}, filters=flt)
+    router.handle(_controllers.ModifyForm, abp + '/modify/user/<uid>', 'auth_admin@form_user_modify',
+                  {'e_type': 'user'}, filters=flt)
+    router.handle(_controllers.DeleteForm, abp + '/delete/role', 'auth_admin@form_role_delete',
+                  {'e_type': 'role'}, ('GET', 'POST'), flt)
+    router.handle(_controllers.DeleteForm, abp + '/delete/user', 'auth_admin@form_user_delete',
+                  {'e_type': 'user'}, ('GET', 'POST'), flt)
 
     # 'Security' admin sidebar section
     admin.sidebar.add_section('security', 'auth_admin@security', 1000)
 
     # 'Users' admin sidebar menu
-    path = router.rule_path('auth_admin@browse_users')
-    admin.sidebar.add_menu('security', 'users', 'auth_admin@users', path, 'fa fa-users', weight=10)
+    admin.sidebar.add_menu('security', 'users', 'auth_admin@users', router.rule_path('auth_admin@browse_users'),
+                           'fa fa-users', weight=10)
 
     # 'Roles' admin sidebar menu
-    path = router.rule_path('auth_admin@browse_roles')
-    admin.sidebar.add_menu('security', 'roles', 'auth_admin@roles', path, 'fa fa-key', weight=20, roles='dev')
+    admin.sidebar.add_menu('security', 'roles', 'auth_admin@roles', router.rule_path('auth_admin@browse_roles'),
+                           'fa fa-key', weight=20, roles='dev')

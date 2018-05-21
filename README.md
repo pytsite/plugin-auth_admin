@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.2 (2018-05-21)
+
+Auth entities creation and deletion.
+
+
 ### 3.1 (2018-05-06)
 
 Support of `auth-3.1`, `form-4.0`.

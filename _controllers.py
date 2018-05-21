@@ -4,13 +4,13 @@ __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
-from pytsite import routing as _routing, tpl as _tpl, metatag as _metatag, lang as _lang
+from pytsite import routing as _routing, tpl as _tpl, metatag as _metatag, lang as _lang, util as _util
 from plugins import auth as _auth, auth_ui as _auth_ui, admin as _admin
 from . import _frm
 
 
-class AdminBrowse(_routing.Controller):
-    """Browse Roles or Users
+class Browser(_routing.Controller):
+    """Browse Auth Entities
     """
 
     def exec(self):
@@ -20,18 +20,18 @@ class AdminBrowse(_routing.Controller):
         e_type = self.arg('e_type')
         if e_type == 'role':
             _metatag.t_set('title', _lang.t('auth_admin@roles'))
-            form = _frm.RolesBrowser(self.request)
+            form = _frm.BrowseRoles(self.request)
         elif e_type == 'user':
             _metatag.t_set('title', _lang.t('auth_admin@users'))
-            form = _frm.UsersBrowser(self.request)
+            form = _frm.BrowseUsers(self.request)
         else:
-            raise self.server_error('Unknown entity type')
+            raise self.server_error('Unknown auth entity type')
 
         return _admin.render(_tpl.render('auth_admin@form', {'form': form}))
 
 
-class AdminForm(_routing.Controller):
-    """Create/Modify User or Role
+class ModifyForm(_routing.Controller):
+    """Create/Modify Auth Entity
     """
 
     def exec(self):
@@ -48,5 +48,23 @@ class AdminForm(_routing.Controller):
             form = _auth_ui.form.User(self.request, user_uid=uid)
         else:
             raise self.server_error('Unknown entity type')
+
+        return _admin.render(_tpl.render('auth_admin@form', {'form': form}))
+
+
+class DeleteForm(_routing.Controller):
+    """Delete Auth Entities
+    """
+    def exec(self):
+        if not _auth.get_current_user().is_admin:
+            raise self.forbidden()
+
+        eids = self.arg('eids')
+        if isinstance(eids, str):
+            eids = _util.cleanup_list(eids.split(','))
+
+        form = _frm.DeleteEntities(self.request, e_type=self.arg('e_type'), eids=eids)
+        form.hide_title = True
+        _metatag.t_set('title', form.title)
 
         return _admin.render(_tpl.render('auth_admin@form', {'form': form}))

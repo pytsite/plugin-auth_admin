@@ -4,7 +4,7 @@ __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
-from pytsite import lang as _lang
+from pytsite import lang as _lang, html as _html, errors as _errors, router as _router
 from plugins import widget as _widget, auth_ui as _auth_ui, settings as _settings, auth as _auth, form as _form
 from . import _widget as _w
 
@@ -75,7 +75,7 @@ class Settings(_settings.Form):
         super()._on_setup_widgets()
 
 
-class RolesBrowser(_form.Form):
+class BrowseRoles(_form.Form):
     def _on_setup_form(self):
         self.submit_button = None
 
@@ -86,7 +86,7 @@ class RolesBrowser(_form.Form):
         ))
 
 
-class UsersBrowser(_form.Form):
+class BrowseUsers(_form.Form):
     def _on_setup_form(self):
         self.submit_button = None
 
@@ -95,3 +95,68 @@ class UsersBrowser(_form.Form):
             uid='users_browser',
             weight=10,
         ))
+
+
+class DeleteEntities(_form.Form):
+    def _on_setup_form(self):
+        if self.attr('e_type') not in ('role', 'user'):
+            raise ValueError('Auth entity type is not specified')
+
+        if not self.attr('eids'):
+            raise ValueError('Entity IDs is not specified')
+
+        if self.attr('e_type') == 'role':
+            self.title = _lang.t('auth_admin@delete_roles')
+        else:
+            self.title = _lang.t('auth_admin@delete_users')
+
+        _lang.t('auth_admin@delete_roles')
+
+    def _on_setup_widgets(self):
+        e_type = self.attr('e_type')
+        eids = self.attr('eids', [])
+        ol = _html.Ol()
+        for eid in eids:
+            if e_type == 'role':
+                ol.append(_html.Li(_auth.get_role(uid=eid).name))
+            elif e_type == 'user':
+                ol.append(_html.Li(_auth.get_user(uid=eid).login))
+
+        self.add_widget(_widget.static.Text(
+            uid='confirmation_text',
+            weight=10,
+            title=_lang.t('auth_admin@delete_{}_confirmation'.format(self.attr('e_type'))),
+        ))
+
+        self.add_widget(_widget.static.HTML(
+            uid='uids_text',
+            weight=20,
+            em=ol,
+        ))
+
+        self.add_widget(_widget.button.Link(
+            uid='action_cancel',
+            weight=10,
+            form_area='footer',
+            href=self.redirect,
+            value=_lang.t('auth_admin@cancel'),
+            icon='fa fa-ban'
+        ))
+
+        self.submit_button.color = 'btn btn-danger'
+        self.submit_button.icon = 'fa fa-trash'
+        self.submit_button.value = _lang.t('auth_admin@delete')
+
+    def _on_submit(self):
+        e_type = self.attr('e_type')
+        eids = self.attr('eids', [])
+
+        try:
+            for eid in eids:
+                if e_type == 'role':
+                    _auth.get_role(uid=eid).delete()
+                elif e_type == 'user':
+                    _auth.get_user(uid=eid).delete()
+        except _errors.ForbidDeletion as e:
+            _router.session().add_error_message(str(e))
+            return

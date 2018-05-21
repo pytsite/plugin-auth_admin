@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.2.1 (2018-05-21)
+
+`plugin.json` fixed.
+
+
 ### 3.2 (2018-05-21)
 
 Auth entities creation and deletion.

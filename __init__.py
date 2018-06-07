@@ -24,7 +24,7 @@ def plugin_load_uwsgi():
     http_api.handle('GET', abp + '/browse/<e_type>', _http_api_controllers.GetBrowserRows, 'auth_admin@browser_rows')
 
     # Admin routes
-    flt = auth_ui.AuthFilterController
+    flt = auth_ui.AuthFilter
     router.handle(_controllers.Browser, abp + '/browse/role', 'auth_admin@browse_roles',
                   {'e_type': 'role'}, filters=flt)
     router.handle(_controllers.Browser, abp + '/browse/user', 'auth_admin@browse_users',

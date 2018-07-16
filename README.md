@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.3.1 (2018-07-16)
+
+Settings form fixed.
+
+
 ### 3.3 (2018-06-07)
 
 Support of `auth_ui-3.5`.

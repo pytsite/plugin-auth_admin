@@ -63,12 +63,13 @@ class Settings(_settings.Form):
             default=_auth.get_new_user_status(),
         ))
 
+        skip_roles = ['dev', 'admin', 'anonymous']
         self.add_widget(_widget.select.Checkboxes(
             weight=70,
             uid='setting_new_user_roles',
             label=_lang.t('auth_admin@new_user_roles'),
             h_size='col-xs-12 col-sm-6 col-md-3',
-            items=[(r.name, _lang.t(r.description)) for r in _auth.find_roles()],
+            items=[(r.name, _lang.t(r.description)) for r in _auth.find_roles() if r.name not in skip_roles],
             default=['user'],
         ))
 

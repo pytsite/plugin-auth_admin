@@ -33,11 +33,13 @@ class GetBrowserRows(_routing.Controller):
 
         m_url = _router.rule_url('auth_admin@form_role_modify',
                                  {'uid': role.uid, '__redirect': _router.rule_url('auth_admin@browse_roles')})
-        actions = '<a href="{}" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a>'.format(m_url)
+        actions = '<a href="{}" class="btn btn-default btn-light btn-sm">' \
+                  '<i class="fa fas fa-edit"></i></a>'.format(m_url)
         d_url = _router.rule_url('auth_admin@form_role_delete',
                                  {'eids': role.uid, '__redirect': _router.rule_url('auth_admin@browse_roles')})
         if role.name not in ('dev', 'admin', 'user', 'anonymous'):
-            actions += '&nbsp;<a href="{}" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>'.format(d_url)
+            actions += '&nbsp;<a href="{}" class="btn btn-danger btn-sm">' \
+                       '<i class="fa fas fa-remove fa-times"></i></a>'.format(d_url)
 
         return {
             'name': role.name,
@@ -77,11 +79,13 @@ class GetBrowserRows(_routing.Controller):
 
         m_url = _router.rule_url('auth_admin@form_user_modify',
                                  {'uid': user.uid, '__redirect': _router.rule_url('auth_admin@browse_users')})
-        actions = '<a href="{}" class="btn btn-default btn-xs"><i class="fa fa-edit"></i></a>'.format(m_url)
+        actions = '<a href="{}" class="btn btn-default btn-light btn-sm">' \
+                  '<i class="fa fas fa-edit"></i></a>'.format(m_url)
         if user != _auth.get_current_user():
             d_url = _router.rule_url('auth_admin@form_user_delete',
                                      {'eids': user.uid, '__redirect': _router.rule_url('auth_admin@browse_users')})
-            actions += '&nbsp;<a href="{}" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>'.format(d_url)
+            actions += '&nbsp;<a href="{}" class="btn btn-danger btn-sm">' \
+                       '<i class="fa fas fa-remove fa-times"></i></a>'.format(d_url)
 
         return {
             'login': user.login,

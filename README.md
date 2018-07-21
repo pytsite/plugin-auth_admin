@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.3.2 (2018-07-21)
+
+Support of Twitter Bootstrap 4 fixed.
+
+
 ### 3.3.1 (2018-07-16)
 
 Settings form fixed.

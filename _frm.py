@@ -141,11 +141,11 @@ class DeleteEntities(_form.Form):
             form_area='footer',
             href=self.redirect,
             value=_lang.t('auth_admin@cancel'),
-            icon='fa fa-ban'
+            icon='fa fas fa-ban'
         ))
 
         self.submit_button.color = 'btn btn-danger'
-        self.submit_button.icon = 'fa fa-trash'
+        self.submit_button.icon = 'fa fas fa-trash'
         self.submit_button.value = _lang.t('auth_admin@delete')
 
     def _on_submit(self):

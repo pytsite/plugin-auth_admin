@@ -23,7 +23,7 @@ class RolesBrowser(_widget.misc.BootstrapTable):
 
         add_btn_url = _router.rule_url('auth_admin@form_role_modify',
                                        {'uid': '0', '__redirect': _router.rule_url('auth_admin@browse_roles')})
-        add_btn = _html.A(href=add_btn_url, css='btn btn-default')
+        add_btn = _html.A(href=add_btn_url, css='btn btn-default btn-light')
         add_btn.append(_html.I(css='fa fa-plus'))
         self.toolbar.append(add_btn)
 
@@ -48,6 +48,6 @@ class UsersBrowser(_widget.misc.BootstrapTable):
 
         add_btn_url = _router.rule_url('auth_admin@form_user_modify',
                                        {'uid': '0', '__redirect': _router.rule_url('auth_admin@browse_users')})
-        add_btn = _html.A(href=add_btn_url, css='btn btn-default')
+        add_btn = _html.A(href=add_btn_url, css='btn btn-default btn-light')
         add_btn.append(_html.I(css='fa fa-plus'))
         self.toolbar.append(add_btn)

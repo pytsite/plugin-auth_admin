@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.3.3 (2018-07-22)
+
+Pagination fixed.
+
+
 ### 3.3.2 (2018-07-21)
 
 Support of Twitter Bootstrap 4 fixed.

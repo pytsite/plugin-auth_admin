@@ -6,7 +6,7 @@ __license__ = 'MIT'
 
 from datetime import datetime as _datetime
 from pytsite import routing as _routing, html as _html, lang as _lang, router as _router, formatters as _formatters
-from plugins import auth as _auth, permissions as _permissions
+from plugins import auth as _auth, permissions as _permissions, query as _query
 
 
 class GetBrowserRows(_routing.Controller):
@@ -112,15 +112,19 @@ class GetBrowserRows(_routing.Controller):
         e_type = self.arg('e_type')
         sort_order = -1 if self.arg('order') == 'desc' else 1
 
+        query = None
         total = 0
         limit = self.arg('limit', 10)
         skip = self.arg('offset', 0)
         rows = []
 
+        if self.arg('search'):
+            query = _query.Query(_query.Text(self.arg('search'), _lang.get_current()))
+
         if e_type == 'role':
             total = _auth.count_roles() - 2  # Minus admin and dev
 
-            f = _auth.find_roles(sort=[(self.arg('sort', 'name'), sort_order)], limit=limit, skip=skip)
+            f = _auth.find_roles(query, sort=[(self.arg('sort', 'name'), sort_order)], limit=limit, skip=skip)
             for role in f:
                 if role.name in ('admin', 'dev'):
                     continue
@@ -130,7 +134,7 @@ class GetBrowserRows(_routing.Controller):
         elif e_type == 'user':
             total = _auth.count_users()
 
-            for user in _auth.find_users(sort=[(self.arg('sort', 'login'), sort_order)], limit=limit, skip=skip):
+            for user in _auth.find_users(query, sort=[(self.arg('sort', 'login'), sort_order)], limit=limit, skip=skip):
                 rows.append(self._get_user_row(user))
 
         return {

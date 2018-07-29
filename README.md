@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.3.4 (2018-07-29)
+
+Search fixed.
+
+
 ### 3.3.3 (2018-07-22)
 
 Pagination fixed.

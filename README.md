@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.4 (2018-08-21)
+
+Support of `widget-2.11`.
+
+
 ### 3.3.4 (2018-07-29)
 
 Search fixed.

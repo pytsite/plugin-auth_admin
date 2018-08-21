@@ -116,7 +116,7 @@ class DeleteEntities(_form.Form):
 
         self.add_widget(_widget.static.Text(
             uid='confirmation_text',
-            title=_lang.t('auth_admin@delete_{}_confirmation'.format(self.attr('e_type'))),
+            text=_lang.t('auth_admin@delete_{}_confirmation'.format(self.attr('e_type'))),
         ))
 
         self.add_widget(_widget.static.HTML(

@@ -1,6 +1,6 @@
 """PytSite Auth Admin Plugin
 """
-__author__ = 'Alexander Shepetko'
+__author__ = 'Oleksandr Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
@@ -34,7 +34,7 @@ class UsersBrowser(_widget.misc.BootstrapTable):
 
         data_fields = [
             ('login', 'auth_admin@login', True),
-            ('full_name', 'auth_admin@full_name', True),
+            ('first_last_name', 'auth_admin@full_name', True),
             ('roles', 'auth_admin@roles', False),
             ('status', 'auth_admin@status', True),
             ('is_public', 'auth_admin@is_public', True),

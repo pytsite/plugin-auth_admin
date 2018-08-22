@@ -1,6 +1,6 @@
 """PytSite Auth UI HTTP API Controllers
 """
-__author__ = 'Alexander Shepetko'
+__author__ = 'Oleksandr Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
@@ -89,7 +89,7 @@ class GetBrowserRows(_routing.Controller):
 
         return {
             'login': user.login,
-            'full_name': user.full_name,
+            'first_last_name': user.first_last_name,
             'roles': roles,
             'status': status,
             'is_public': '<span class="label label-info">{}</span>'.format(yes) if user.is_public else '',

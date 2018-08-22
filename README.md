@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 3.4.2 (2018-08-22)
+
+Dependency fixed.
+
+
 ### 3.4.1 (2018-08-22)
 
 User's `full_name` usage replaced with `first_last_name`.

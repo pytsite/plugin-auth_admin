@@ -128,7 +128,7 @@ class DeleteEntities(_form.Form):
             uid='action_cancel',
             weight=100,
             form_area='footer',
-            href=self.redirect,
+            href=self.referer or self.redirect or _router.base_url(),
             value=_lang.t('auth_admin@cancel'),
             icon='fa fas fa-ban'
         ))

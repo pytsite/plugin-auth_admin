@@ -5,14 +5,10 @@ __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
 
-def plugin_load_uwsgi():
-    from pytsite import lang, router, tpl
+def plugin_load_wsgi():
+    from pytsite import router
     from plugins import auth_ui, settings, admin, http_api
     from . import _frm, _controllers, _http_api_controllers
-
-    # Resources
-    lang.register_package(__name__)
-    tpl.register_package(__name__)
 
     # Settings form
     settings.define('auth', _frm.Settings, 'auth_admin@security', 'fa fa-user', 'dev')

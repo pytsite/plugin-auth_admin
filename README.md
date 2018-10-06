@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 4.0 (2018-10-06)
+
+Support of `pytsite-8.x`.
+
+
 ### 3.5 (2018-09-09)
 
 Support of `form-4.14`.

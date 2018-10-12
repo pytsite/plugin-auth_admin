@@ -16,7 +16,7 @@ class RolesBrowser(_widget.misc.BootstrapTable):
             ('name', 'auth_admin@name', True),
             ('description', 'auth_admin@description', False),
             ('permissions', 'auth_admin@permissions', False),
-            ('actions', 'auth_admin@actions', False),
+            ('_actions', 'auth_admin@actions', False),
         ]
 
         super().__init__(uid, rows_url=rows_url, data_fields=data_fields, checkbox=False, **kwargs)
@@ -26,6 +26,8 @@ class RolesBrowser(_widget.misc.BootstrapTable):
         add_btn = _html.A(href=add_btn_url, css='btn btn-default btn-light')
         add_btn.append(_html.I(css='fa fa-plus'))
         self.toolbar.append(add_btn)
+
+        self._css += ' widget-auth-admin-browser'
 
 
 class UsersBrowser(_widget.misc.BootstrapTable):
@@ -41,7 +43,7 @@ class UsersBrowser(_widget.misc.BootstrapTable):
             ('is_online', 'auth_admin@is_online', True),
             ('created', 'auth_admin@created', True),
             ('last_activity', 'auth_admin@last_activity', True),
-            ('actions', 'auth_admin@actions', False),
+            ('_actions', 'auth_admin@actions', False),
         ]
 
         super().__init__(uid, rows_url=rows_url, data_fields=data_fields, checkbox=False, **kwargs)
@@ -51,3 +53,5 @@ class UsersBrowser(_widget.misc.BootstrapTable):
         add_btn = _html.A(href=add_btn_url, css='btn btn-default btn-light')
         add_btn.append(_html.I(css='fa fa-plus'))
         self.toolbar.append(add_btn)
+
+        self._css += ' widget-auth-admin-browser'

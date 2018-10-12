@@ -45,7 +45,7 @@ class GetBrowserRows(_routing.Controller):
             'name': role.name,
             'description': role_desc,
             'permissions': ' '.join(perms),
-            'actions': actions,
+            '_actions': '<div class="entity-actions">{}</div>'.format(actions),
         }
 
     @staticmethod
@@ -96,7 +96,7 @@ class GetBrowserRows(_routing.Controller):
             'is_online': is_online,
             'created': _lang.pretty_date_time(user.created),
             'last_activity': _lang.pretty_date_time(user.last_activity),
-            'actions': actions,
+            '_actions': '<div class="entity-actions">{}</div>'.format(actions),
         }
 
     def __init__(self):

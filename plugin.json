@@ -1,6 +1,6 @@
 {
   "name": "auth_admin",
-  "version": "4.1",
+  "version": "4.2",
   "description": {
     "en": "Auth Admin",
     "ru": "Auth Admin",
@@ -22,7 +22,7 @@
       "http_api": "3.x",
       "query": "1.x",
       "settings": "2.x",
-      "widget": "3.x"
+      "widget": "4.x"
     }
   }
 }

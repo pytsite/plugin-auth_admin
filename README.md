@@ -3,6 +3,12 @@
 
 ## Changelog
 
+
+### 4.3 (2018-11-19)
+
+Support of `auth_ui-4.9`.
+
+
 ### 4.2 (2018-10-22)
 
 Support of `widget-4.x`.

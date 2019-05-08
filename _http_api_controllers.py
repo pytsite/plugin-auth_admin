@@ -75,7 +75,7 @@ class GetBrowserRows(_routing.Controller):
         status = '<span class="label label-{}">{}</span>'.format(status_css, status_word)
 
         is_online = '<span class="label label-success">{}</span>'.format(yes) \
-            if (_datetime.now() - user.last_activity).seconds < 180 else ''
+            if (user.last_activity and ((_datetime.now() - user.last_activity).seconds < 180)) else ''
 
         m_url = _router.rule_url('auth_admin@form_user_modify',
                                  {'uid': user.uid, '__redirect': _router.rule_url('auth_admin@browse_users')})

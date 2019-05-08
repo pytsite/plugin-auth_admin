@@ -95,7 +95,7 @@ class GetBrowserRows(_routing.Controller):
             'is_public': '<span class="label label-info">{}</span>'.format(yes) if user.is_public else '',
             'is_online': is_online,
             'created': _lang.pretty_date_time(user.created),
-            'last_activity': _lang.pretty_date_time(user.last_activity),
+            'last_activity': _lang.pretty_date_time(user.last_activity) if user.last_activity else '',
             '_actions': '<div class="entity-actions">{}</div>'.format(actions),
         }
 

@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 4.3.2 (2019-05-08)
+
+Error in HTTP API fixed.
+
+
 ### 4.3.1 (2019-05-08)
 
 Error in HTTP API fixed.

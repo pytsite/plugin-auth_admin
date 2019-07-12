@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 4.4 (2019-07-12)
+
+Support of `pytsite-9.0`.
+
+
 ### 4.3.2 (2019-05-08)
 
 Error in HTTP API fixed.

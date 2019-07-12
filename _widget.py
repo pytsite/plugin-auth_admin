@@ -4,13 +4,14 @@ __author__ = 'Oleksandr Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
-from pytsite import html as _html, router as _router
-from plugins import widget as _widget, http_api as _http_api
+import htmler
+from pytsite import router
+from plugins import widget, http_api
 
 
-class RolesBrowser(_widget.misc.BootstrapTable):
+class RolesBrowser(widget.misc.BootstrapTable):
     def __init__(self, uid: str, **kwargs):
-        rows_url = _http_api.url('auth_admin@browser_rows', {'e_type': 'role'})
+        rows_url = http_api.url('auth_admin@browser_rows', {'e_type': 'role'})
 
         data_fields = [
             ('name', 'auth_admin@name', True),
@@ -21,18 +22,18 @@ class RolesBrowser(_widget.misc.BootstrapTable):
 
         super().__init__(uid, rows_url=rows_url, data_fields=data_fields, checkbox=False, **kwargs)
 
-        add_btn_url = _router.rule_url('auth_admin@form_role_modify',
-                                       {'uid': '0', '__redirect': _router.rule_url('auth_admin@browse_roles')})
-        add_btn = _html.A(href=add_btn_url, css='btn btn-default btn-light')
-        add_btn.append(_html.I(css='fa fa-plus'))
-        self.toolbar.append(add_btn)
+        add_btn_url = router.rule_url('auth_admin@form_role_modify',
+                                      {'uid': '0', '__redirect': router.rule_url('auth_admin@browse_roles')})
+        add_btn = htmler.A(href=add_btn_url, css='btn btn-default btn-light')
+        add_btn.append_child(htmler.I(css='fa fa-plus'))
+        self.toolbar.append_child(add_btn)
 
         self._css += ' widget-auth-admin-browser'
 
 
-class UsersBrowser(_widget.misc.BootstrapTable):
+class UsersBrowser(widget.misc.BootstrapTable):
     def __init__(self, uid: str, **kwargs):
-        rows_url = _http_api.url('auth_admin@browser_rows', {'e_type': 'user'})
+        rows_url = http_api.url('auth_admin@browser_rows', {'e_type': 'user'})
 
         data_fields = [
             ('login', 'auth_admin@login', True),
@@ -48,10 +49,10 @@ class UsersBrowser(_widget.misc.BootstrapTable):
 
         super().__init__(uid, rows_url=rows_url, data_fields=data_fields, checkbox=False, **kwargs)
 
-        add_btn_url = _router.rule_url('auth_admin@form_user_modify',
-                                       {'uid': '0', '__redirect': _router.rule_url('auth_admin@browse_users')})
-        add_btn = _html.A(href=add_btn_url, css='btn btn-default btn-light')
-        add_btn.append(_html.I(css='fa fa-plus'))
-        self.toolbar.append(add_btn)
+        add_btn_url = router.rule_url('auth_admin@form_user_modify',
+                                      {'uid': '0', '__redirect': router.rule_url('auth_admin@browse_users')})
+        add_btn = htmler.A(href=add_btn_url, css='btn btn-default btn-light')
+        add_btn.append_child(htmler.I(css='fa fa-plus'))
+        self.toolbar.append_child(add_btn)
 
         self._css += ' widget-auth-admin-browser'
